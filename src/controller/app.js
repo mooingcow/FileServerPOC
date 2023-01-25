@@ -1,8 +1,3 @@
-//Admin Number: 2129088
-//Name: Jedidiah Phua Shengjie
-//Class: DISM/FT/2B/21
-
-
 var express=require('express');
 
 

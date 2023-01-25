@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>		
+	<meta charset="utf-8">
+	<title>Login</title>
+	<!--Web Fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	<!--Stylesheets-->
+	<link href="/resetcss" rel="stylesheet">
+	<link href="/logincss" rel="stylesheet">
+	<!--Scripts-->
+	<script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body style="background-color: #2D9595;">
+	<div id="loginpage">
+		<img src="/loginimage" id="plane"/>
+		<div id="welcome">
+			Welcome back!
+		</div>
+		<form id="login-form">
+			<br>
+			<br>
+			<br>
+			<br>
+			<!--Input Box - Name-->
+			<input name="username" id="loginpage-username" type="text" placeholder="Username"/>
+			<br>
+			
+			<!--Input Box - Password-->
+			<input name="password" id="loginpage-password" type="password" placeholder="Password"/>
+			<br>
+			
+			<!--Submit Button-->
+			<button class="submit"  type="submit">Login</button>
+			<br>
+			<div class="optionsgrid">
+				<div class="options" id="forgotpassword">
+					Forgot Password?
+				</div>
+				<div class="options" id="register">
+					Don't Have An Account?
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script src="/indexjs">
+	</script>
+    <script>
+        const baseUrl = "http://localhost:8081";
+        $("#login-form").submit((event) => {
+            // prevent page reload
+            event.preventDefault();
+
+            const username = $("#loginpage-username").val();
+            const password = $("#loginpage-password").val();
+			console.log(username, password);
+            const requestBody = {
+                username:username,
+                password:password
+            };
+
+            axios.post(`${baseUrl}/login/`, requestBody)
+                .then((response) => {
+                    const user = response.data.user;
+                    localStorage.setItem("role", user);
+					window.location.href = "/";
+                })
+                .catch((error) => {
+					window.alert("Incorrect Username or Password");
+					return false;
+                    console.log(error);
+                });
+        });
+    </script>
+</body>
+</html>

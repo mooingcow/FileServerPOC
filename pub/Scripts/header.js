@@ -1,12 +1,10 @@
-const baseUrl = "http://localhost:8081";
-const token = localStorage.getItem("token");
-const loggedInUserID = parseInt(localStorage.getItem("loggedInUserID"));
+const loggedInUserID = localStorage.getItem("role");
 const currenturl = window.location.href;
 
-if(token === null || isNaN(loggedInUserID)) {
+if (isNaN(loggedInUserID)) {
     var returnhtml = '<a href="/login/" id="buttonfont">LOGIN</a>';
-    $('#contact').append(returnhtml);
-}else {
+    $("#contact").append(returnhtml);
+} else {
     var returnhtml = '<a href="/profile" id="buttonfont">PROFILE</a>';
-    $('#contact').append(returnhtml);
+    $("#contact").append(returnhtml);
 }

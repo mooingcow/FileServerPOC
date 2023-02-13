@@ -71,7 +71,7 @@
 
             axios.post(`${baseUrl}/login/`, requestBody)
                 .then((response) => {
-                    const user = response.data.user;
+                    const user = response.data;
                     localStorage.setItem("role", user);
 					window.location.href = "/";
                 })

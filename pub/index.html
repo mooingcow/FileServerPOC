@@ -1,31 +1,72 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Render Test</title>
-	<!--Web Fonts-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-	<!--Stylesheets-->
-	<link href="./css/reset.css" rel="stylesheet">
-	<link href="./css/index.css" rel="stylesheet">
-	<!--Scripts-->
-	<script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <title>Render Test</title>
+        <!--Web Fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
+        <!--Stylesheets-->
+        <link href="./css/reset.css" rel="stylesheet" />
+        <link href="./css/index.css" rel="stylesheet" />
+        <!--Scripts-->
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
 
-<body style="background-color: white;">
-
-	<div id="welcome">
-		Welcome to the Render Test!	
-	</div>
-	
-	
-</body>
+    <body style="background-color: white">
+        <div id="welcome">Welcome to the File Server POC!</div>
+        <!--File Upload-->
+        <div id="file-upload">
+            <form
+                id="file-form"
+                onsubmit="return false"
+                enctype="multipart/form-data"
+            >
+                <input type="file" name="file" id="file" />
+                <input id="submit-button" type="submit" />
+            </form>
+        </div>
+        <!--File List-->
+        <div id="file-list">
+            <ul id="file-list-ul"></ul>
+        </div>
+        <!--Scripts-->
+        <script>
+            $("#submit-button").click(() => {
+                event.preventDefault();
+                console.log("hello");
+                const formData = new FormData();
+                const uploadFile = document.querySelector("#file");
+                formData.append("file", uploadFile.files[0]);
+                axios
+                    .post("http://178.128.112.37:8081/upload/", formData)
+                    .then((res) => {
+                        window.alert(res.data);
+                        window.location.reload();
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            });
+        </script>
+    </body>
 </html>

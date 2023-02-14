@@ -11,5 +11,4 @@ app.use(urlencodedParser);
 app.use('/uploads', express.static('uploads'));
 
 
-
 module.exports=app;

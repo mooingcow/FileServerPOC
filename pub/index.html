@@ -13,6 +13,12 @@
         <!--Stylesheets-->
         <link href="./css/reset.css" rel="stylesheet" />
         <link href="./css/index.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
         <!--Scripts-->
         <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -33,8 +39,19 @@
     </head>
 
     <body style="background-color: white">
+        <div id="nav-bar">
+            <div id="logo">holocron</div>
+            <div id="username">mooingcow</div>
+            <nav id="nav-links">
+                <div>
+                    <img src="../pub/icons/upload.png"/>
+                    <a class="menu-link" href="./index.html">upload</a>
+                </div>
+            </nav>
+        </div>
+
         <div id="welcome">Welcome to the File Server POC!</div>
-        <!--File Upload-->
+        <!--File Upload
         <div id="file-upload">
             <form
                 id="file-form"
@@ -44,12 +61,13 @@
                 <input type="file" name="file" id="file" multiple />
                 <input id="submit-button" type="submit" />
             </form>
-        </div>
-        <!--File List-->
-        <div id="file-list">
-            <ul id="file-list-ul"></ul>
-        </div>
+        </div>-->
         <!--Scripts-->
+        <script>
+            $('menu-link').hover(() => {
+                $('menu-link').css('color', 'white');
+            });
+        </script>
         <script>
             $("#submit-button").click(() => {
                 event.preventDefault();
@@ -71,7 +89,7 @@
                     })
                     .catch((err) => {
                         console.log(err);
-                    });                
+                    });
             });
         </script>
     </body>

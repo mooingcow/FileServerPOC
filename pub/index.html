@@ -41,7 +41,7 @@
                 onsubmit="return false"
                 enctype="multipart/form-data"
             >
-                <input type="file" name="file" id="file" />
+                <input type="file" name="file" id="file" multiple />
                 <input id="submit-button" type="submit" />
             </form>
         </div>
@@ -56,7 +56,13 @@
                 console.log("hello");
                 const formData = new FormData();
                 const uploadFile = document.querySelector("#file");
-                formData.append("file", uploadFile.files[0]);
+
+                //const filenameRegex = new RegExp(/^\[([\w\d]+)\] .+\.[a-z]+$/g);
+
+                for (let i = 0; i < uploadFile.files.length; i++) {
+                    console.log(uploadFile.files[i].name);
+                    formData.append("file", uploadFile.files[i]);
+                }
                 axios
                     .post("http://178.128.112.37:8081/upload/", formData)
                     .then((res) => {
@@ -65,7 +71,7 @@
                     })
                     .catch((err) => {
                         console.log(err);
-                    });
+                    });                
             });
         </script>
     </body>

@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 #nav-bar {
-    display: block;
+    display: inline-block;
     position: fixed;
     background-color: #4e426d;
     width: 25%;
@@ -29,12 +29,24 @@
 #nav-links {
     margin-top: 100px;
     margin-left: 15%;
+    float: left;
+}
+
+#nav-links > div {
+    padding: 10px;
+    display: inline-block;
+}
+
+#nav-links > div:hover {
+    border-radius: 10px;
+    background-color: rgba(216, 216, 216, 0.25);
 }
 
 #nav-links > div > img {
     height: 20px;
     width: auto;
     margin-right: 5px;
+    float: left;
 }
 
 #nav-links > div > a {
@@ -42,6 +54,7 @@
     font-size: 25px;
     font-weight: 300;
     color: #ffffff;
+    float: left;
 }
 
 #nav-links > div > a:hover {

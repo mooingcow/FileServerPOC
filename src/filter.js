@@ -1,7 +1,9 @@
 const fs = require("fs");
+const RegExp = require("xregexp");
 var files = fs.readdirSync("./upload");
 
 for (let i = 0; i < files.length; i++) {
+    console.log(files[i]);
     const filenameRegex = new RegExp(/^\[([\w\d]+)\] .+\.[a-z]+$/g);
 
     if (!filenameRegex.test(files[i])) {

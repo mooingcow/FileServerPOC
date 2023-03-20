@@ -39,8 +39,9 @@ app.post("/upload/", upload.array("file"), (req, res) => {
     const fs = require("fs");
     var files = fs.readdirSync("./upload");
 
+    const RegExp = require("xregexp");
     for (let i = 0; i < files.length; i++) {
-        /*const filenameRegex = new RegExp(/^\[([\w\d]+)\] .+\.[a-z]+$/g);
+        const filenameRegex = new RegExp(/^\[([\w\d]+)\] .+\.[a-z]+$/g);
 
         if (!filenameRegex.test(files[i])) {
             console.log("Invalid File Name: " + files[i]);
@@ -49,7 +50,7 @@ app.post("/upload/", upload.array("file"), (req, res) => {
         if(files[i].slice(0, 1) != "[") {
             console.log("Invalid File Name: " + files[i]);
             continue;
-        }*/
+        }
  
         fileName = files[i].slice(files[i].indexOf("]") + 2);
         console.log(fileName);
